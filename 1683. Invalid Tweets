@@ -1,0 +1,39 @@
+Table: Tweets
+
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| tweet_id       | int     |
+| content        | varchar |
++----------------+---------+
+tweet_id is the primary key (column with unique values) for this table.
+This table contains all the tweets in a social media app.
+ 
+
+Write a solution to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is strictly greater than 15.
+
+Return the result table in any order.
+
+----------------------------Solution 1---------------------
+
+select tweet_id
+from Tweets
+where length(content)>15
+
+Note:** LENGTH() returns the length of the string measured in bytes.
+        SELECT LENGTH('€')  # is equal to 3
+        SELECT CHAR_LENGTH('€') # is equal to 1
+
+Important Note: Using LENGTH() will pass the testcases. If the testcases included characters such as € then it would fail as shown in the examples above.
+
+
+---------------------------------------------Solution 2-------------------------------
+
+select tweet_id
+from Tweets
+where char_length(content)>15
+
+
+
+
+
