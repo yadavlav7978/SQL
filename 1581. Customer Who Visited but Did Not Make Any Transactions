@@ -45,5 +45,26 @@ on V.visit_id=T.visit_id
 where T.Visit_id is null
 group by customer_id
 
+--------------------------  Solution 3---------------------------------------------------------
+select customer_id,count(customer_id ) as count_no_trans
+from Visits as V
+where not exists(
+      select 1
+      from Transactions as T
+      where T.visit_id=V.visit_id
+)
+group by customer_id
+
+OR ---------------
+
+select customer_id,count(customer_id ) as count_no_trans
+from Visits as V
+where not exists(
+      select visit_id
+      from Transactions as T
+      where T.visit_id=V.visit_id
+)
+group by customer_id
+
 
 
